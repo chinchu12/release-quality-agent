@@ -33,7 +33,7 @@ test.describe('Login Tests', () => {
 
 });
 
-/*test('controlled failure for release analysis', async ({ loginPage, productsPage }) => {
+test('controlled failure for release analysis', async ({ loginPage, productsPage }) => {
   await loginPage.goto();
 
   await loginPage.login(
@@ -42,4 +42,4 @@ test.describe('Login Tests', () => {
   );
 
   await expect(productsPage.title).toHaveText('Dashboard');
-});*/
+});
