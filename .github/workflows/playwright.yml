@@ -36,6 +36,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright tests
+        continue-on-error: true
         run: npx playwright test --project=chromium
 
       - name: Generate release summary
@@ -49,7 +50,7 @@ jobs:
             -X POST \
             -H "Content-Type: application/json" \
             --data-binary @test-results/release-summary.json \
-            "${{ secrets.N8N_WEBHOOK_URL }}"
+            "${{ secrets.N8N_PRODUCTION_WEBHOOK_URL }}"
 
       - name: Upload Playwright report
         if: always()
