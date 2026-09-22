@@ -7,6 +7,19 @@ on:
   pull_request:
     branches: [main, master]
 
+  workflow_dispatch:
+    inputs:
+      demo_scenario:
+        description: "Choose release quality demo scenario"
+        required: true
+        default: "automation"
+        type: choice
+        options:
+          - clean
+          - automation
+          - unknown
+          - productbug
+
 jobs:
   test:
     timeout-minutes: 60
@@ -35,7 +48,16 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Run Playwright tests
+      - name: Run selected demo scenario
+        if: github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        run: |
+          npx playwright test tests/demo-release-scenarios.spec.ts \
+            --project=chromium \
+            --grep "@${{ github.event.inputs.demo_scenario }}"
+
+      - name: Run normal Playwright tests
+        if: github.event_name != 'workflow_dispatch'
         continue-on-error: true
         run: npx playwright test --project=chromium
 
