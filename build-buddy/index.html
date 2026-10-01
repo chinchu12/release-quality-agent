@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Buddy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div id="buddy-container" class="buddy">
+    <div id="buddy-bubble" class="buddy-bubble">
+      Build Buddy is watching your release...
+    </div>
+
+    <img
+      id="buddy-image"
+      class="buddy-image"
+      src="buddy-ready.png"
+      alt="Build Buddy"
+    />
+
+    <div class="buddy-actions">
+      <button id="primary-action" class="primary-btn">OK</button>
+
+      <button
+        id="secondary-action"
+        class="secondary-btn"
+        onclick="hideBuddy()"
+      >
+        Snooze
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
